@@ -24,9 +24,9 @@ namespace HSAB.SAFA
             NavPage = new NavigationPage(new Contents());
             if (Device.OS != TargetPlatform.Windows)
             {
-                App.NavPage.BarBackgroundColor = (Color)App.Current.Resources["Wine_Red"];
-                App.NavPage.BarTextColor = Color.White;
-                App.NavPage.ToolbarItems.Add(new ToolbarItem
+               NavPage.BarBackgroundColor = Color.FromHex("#C0504D");
+                NavPage.BarTextColor = Color.White;
+                NavPage.ToolbarItems.Add(new ToolbarItem
                 {
 
                     //  Text = "Home",
