@@ -7,14 +7,50 @@ using Xamarin.Forms;
 
 namespace HSAB.SAFA
 {
+
+
+
 	public partial class App : Application
 	{
-		public App ()
+
+        public static String app_title { get; set; }
+
+        public static NavigationPage NavPage { get; set; }
+
+        public App ()
 		{
 			InitializeComponent();
 
-			MainPage = new HSAB.SAFA.MainPage();
-		}
+            NavPage = new NavigationPage(new Contents());
+            if (Device.OS != TargetPlatform.Windows)
+            {
+                App.NavPage.BarBackgroundColor = (Color)App.Current.Resources["Wine_Red"];
+                App.NavPage.BarTextColor = Color.White;
+                App.NavPage.ToolbarItems.Add(new ToolbarItem
+                {
+
+                    //  Text = "Home",
+                    //    Icon ="back.png",
+                    Icon = "home.png",
+                    //    Command = new Command(() => nav.PushAsync(new Contents(database))),
+                    Command = new Command(() => App.NavPage.PopToRootAsync())
+                });
+                App.NavPage.ToolbarItems.Add(new ToolbarItem
+                {
+
+                    //  Text = "Home",
+                    //    Icon ="back.png",
+                    Icon = "info2.png",
+                    //    Command = new Command(() => nav.PushAsync(new Contents(database))),
+                    Command = new Command(() =>
+
+                       App.NavPage.PushAsync(new info_2(app_title))
+                )
+                });
+
+            }
+            MainPage = NavPage;
+        }
 
 		protected override void OnStart ()
 		{
